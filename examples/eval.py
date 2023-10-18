@@ -1,10 +1,7 @@
 import os
 import argparse
 from pathlib import Path
-import warnings
 
-import torch
-import torch.nn as nn
 import torchvision.datasets as datasets
 import torch.utils.data as data
 import torchvision.transforms as transforms
@@ -12,7 +9,7 @@ import torchvision.transforms as transforms
 import sys
 sys.path.insert(0,'..')
 
-from resnet import *
+from models.resnet import *
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

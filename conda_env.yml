@@ -1,0 +1,21 @@
+name: auto-attack
+channels:
+  - pytorch
+  - nvidia
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - pytorch==2.0.0
+  - torchvision==0.15.2
+  - pytorch-cuda=11.7
+  - python==3.8.17
+  - pip
+  - pip:
+      - pre-commit
+      - rootpath
+      - pandas
+      - numpy
+      - scipy
+      - matplotlib
+  - pytest
