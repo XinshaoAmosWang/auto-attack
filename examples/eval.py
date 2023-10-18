@@ -2,11 +2,16 @@ import os
 import argparse
 from pathlib import Path
 
+import torch
 import torchvision.datasets as datasets
 import torch.utils.data as data
 import torchvision.transforms as transforms
 
 import sys
+
+from data.cifar10 import load_cifar10_test_x_y
+from models.resnet18 import load_resnet18
+
 sys.path.insert(0,'..')
 
 from models.resnet import *
@@ -28,17 +33,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # load model
-    model = ResNet18()
-    ckpt = torch.load(args.model)
-    model.load_state_dict(ckpt)
-    model.cuda()
-    model.eval()
+    device = "cuda:0"
+    model = load_resnet18(device=device)
 
     # load data
-    transform_list = [transforms.ToTensor()]
-    transform_chain = transforms.Compose(transform_list)
-    item = datasets.CIFAR10(root=args.data_dir, train=False, transform=transform_chain, download=True)
-    test_loader = data.DataLoader(item, batch_size=1000, shuffle=False, num_workers=0)
+    x_test, y_test = load_cifar10_test_x_y()
     
     # create save dir
     if not os.path.exists(args.save_dir):
@@ -48,11 +47,6 @@ if __name__ == '__main__':
     from autoattack import AutoAttack
     adversary = AutoAttack(model, norm=args.norm, eps=args.epsilon, log_path=args.log_path,
         version=args.version)
-    
-    l = [x for (x, y) in test_loader]
-    x_test = torch.cat(l, 0)
-    l = [y for (x, y) in test_loader]
-    y_test = torch.cat(l, 0)
     
     # example of custom version
     if args.version == 'custom':
