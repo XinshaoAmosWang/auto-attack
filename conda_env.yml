@@ -1,4 +1,4 @@
-name: auto-attack
+name: auto-attack-robustbench
 channels:
   - pytorch
   - nvidia
@@ -9,7 +9,7 @@ dependencies:
   - pytorch==2.0.0
   - torchvision==0.15.2
   - pytorch-cuda=11.7
-  - python==3.8.17
+  - python==3.10.9
   - pip
   - pip:
       - pre-commit
