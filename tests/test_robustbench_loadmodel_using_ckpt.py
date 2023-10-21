@@ -1,12 +1,7 @@
 import torch
-from torch import nn
 
 from data.cifar10 import load_cifar10_test_x_y
-from robustbench.model_zoo.architectures.dm_wide_resnet import (
-    CIFAR10_MEAN,
-    CIFAR10_STD,
-    DMWideResNet,
-)
+from models.Wang2023Better_WRN_70_16 import load_Wang2023Better_WRN_70_16
 
 ExpectedOutput = torch.Tensor(
     [
@@ -37,19 +32,7 @@ def test_robustbench_load_model():
 
     # #######################################
     # load model:
-    model_path = "models/cifar10/Linf/Wang2023Better_WRN-70-16.pt"
-    checkpoint = torch.load(model_path, map_location=torch.device(device))
-    model = DMWideResNet(
-        num_classes=10,
-        depth=70,
-        width=16,
-        activation_fn=nn.SiLU,
-        mean=CIFAR10_MEAN,
-        std=CIFAR10_STD,
-    )
-    model.load_state_dict(checkpoint, strict=True)
-    model.to(device=device)
-    model.eval()
+    model = load_Wang2023Better_WRN_70_16(device=device)
     # #######################################
     # #######################################
     # try forward processing
