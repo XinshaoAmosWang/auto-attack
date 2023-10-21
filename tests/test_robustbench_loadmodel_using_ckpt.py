@@ -1,21 +1,21 @@
 import torch
 
 from data.cifar10 import load_cifar10_test_x_y
-from models.Wang2023Better_WRN_70_16 import load_Wang2023Better_WRN_70_16
+from models.Wang2023Better_WRN_28_10 import load_Wang2023Better_WRN_28_10
 
 ExpectedOutput = torch.Tensor(
     [
         [
-            -0.4918,
-            -1.1725,
-            -0.0515,
-            2.1848,
-            0.1238,
-            1.2371,
-            0.3112,
-            -0.5574,
-            -0.5971,
-            -0.9859,
+            -0.5038,
+            -1.0584,
+            -0.0404,
+            2.0488,
+            -0.0799,
+            1.1700,
+            0.2806,
+            -0.6269,
+            -0.3371,
+            -0.8527,
         ]
     ]
 )
@@ -32,7 +32,7 @@ def test_robustbench_load_model():
 
     # #######################################
     # load model:
-    model = load_Wang2023Better_WRN_70_16(device=device)
+    model = load_Wang2023Better_WRN_28_10(device=device)
     # #######################################
     # #######################################
     # try forward processing

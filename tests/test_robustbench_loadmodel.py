@@ -6,16 +6,16 @@ from robustbench.utils import load_model
 ExpectedOutput = torch.Tensor(
     [
         [
-            -0.4918,
-            -1.1725,
-            -0.0515,
-            2.1848,
-            0.1238,
-            1.2371,
-            0.3112,
-            -0.5574,
-            -0.5971,
-            -0.9859,
+            -0.5038,
+            -1.0584,
+            -0.0404,
+            2.0488,
+            -0.0799,
+            1.1700,
+            0.2806,
+            -0.6269,
+            -0.3371,
+            -0.8527,
         ]
     ]
 )
@@ -33,7 +33,7 @@ def test_robustbench_load_model():
     # #######################################
     # load model:
     model = load_model(
-        model_name="Wang2023Better_WRN-70-16",
+        model_name="Wang2023Better_WRN-28-10",
         # TODO: could be confirmed with other examples without reading the code
         # is the threat model necessary, with other objectives
         # or the only purpose is to create a sub folder type?
